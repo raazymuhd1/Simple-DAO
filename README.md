@@ -1,66 +1,27 @@
-## Foundry
+### DAO
+- [https://docs.openzeppelin.com/contracts/4.x/governance#setup](build-dao) VIDEO STOP AT 07.02.11
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+### ACCOUNT ABSTRACTION EIP-4337
+- [https://eips.ethereum.org/EIPS/eip-4337](account-abstraction)
 
-Foundry consists of:
+## ETHEREUM NAME SERVICE (ENS)
+[https://eips.ethereum.org/EIPS/eip-137](ethereum-name-service)
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+### Current Dao Problem with voting
+ - proof of personhood of participation => meaning one user can only vote once no matter how much token of the protocol they have ( still unsolve )
+   - the issue is user can still create another more account with diff address to give a vote
 
-## Documentation
+### off-chain vs on-chain voting
+ - off-chain voting can be very cheap, bcoz each vote doesnt need to send on chain ( no gas spent )
+   - the way it work is user sign a vote, and all that vote will save/collected to decentralized database like ( ipfs ), after all collected then   send it to on-chain, that way only cost one transaction
+   - we can also use snapshot platform to let our community to sign a vote on our proposal and store all that signed vote on ipfs without send it to on-chain directly, it could be send to onchain if dao chose it.
 
-https://book.getfoundry.sh/
+ - on-chain voting could be very expensive for every single person vote, imagine per vote cost $100 * 1M users = $1mn
+   and thats not good for the community, bcoz each time the protocol want to make changes they need to spend that much of money 
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+### Dao structure
+ - contract that we want to make changes
+ - Governance token
+ - Governor Contract ( which contain all vote proposal and other stuff )
+ - timelock Controller ( this contract will owne the governor contract )
+   - timelock controller will give user some time to get out if they dont like the proposal, bfore the proposal get execute it.

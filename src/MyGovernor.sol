@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.10;
 
 import "@openzeppelin/contracts/governance/Governor.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorSettings.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorCountingSimple.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
-import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
+import { GovernorSettings } from "@openzeppelin/contracts/governance/extensions/GovernorSettings.sol";
+import { GovernorCountingSimple } from "@openzeppelin/contracts/governance/extensions/GovernorCountingSimple.sol";
+import { GovernorVotes, IVotes } from "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
+import  {GovernorVotesQuorumFraction} from "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
+import { GovernorTimelockControl, TimelockController } from "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
 
 contract MyGovernor is Governor, GovernorSettings, GovernorCountingSimple, GovernorVotes, GovernorVotesQuorumFraction, GovernorTimelockControl {
     constructor(IVotes _token, TimelockController _timelock)
@@ -18,7 +18,7 @@ contract MyGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
     {}
 
     // The following functions are overrides required by Solidity.
-
+    // how long the delay before user can start to vote
     function votingDelay()
         public
         view
@@ -28,6 +28,7 @@ contract MyGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
         return super.votingDelay();
     }
 
+    // how long the proposal is open to vote
     function votingPeriod()
         public
         view
@@ -37,6 +38,7 @@ contract MyGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
         return super.votingPeriod();
     }
 
+    // a token percentage ( how many percent token need to vote in order our proposal to pass, example: if token supply is 10M, atleast some percent of that total supply need to vote in order our proposal to pass )
     function quorum(uint256 blockNumber)
         public
         view
@@ -64,6 +66,7 @@ contract MyGovernor is Governor, GovernorSettings, GovernorCountingSimple, Gover
         return super.proposalNeedsQueuing(proposalId);
     }
 
+    // minimum number an account must have to give a vote ( everytime leave it 0, bcoz if we set to 1 or above no user can vote to our proposal )
     function proposalThreshold()
         public
         view

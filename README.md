@@ -1,11 +1,15 @@
 ### DAO
-- [https://docs.openzeppelin.com/contracts/4.x/governance#setup](build-dao) VIDEO STOP AT 07.02.11
+- [https://docs.openzeppelin.com/contracts/4.x/governance#setup](build-dao) VIDEO STOP AT 07.21.27
 
 ### ACCOUNT ABSTRACTION EIP-4337
 - [https://eips.ethereum.org/EIPS/eip-4337](account-abstraction)
 
 ## ETHEREUM NAME SERVICE (ENS)
 [https://eips.ethereum.org/EIPS/eip-137](ethereum-name-service)
+
+## Caveats
+  - to install any packages/dependencies to foundry project without having to use --no-commit at the end
+  - you need to commit your local changes first, then install any deps and it will be fine
 
 ### Current Dao Problem with voting
  - proof of personhood of participation => meaning one user can only vote once no matter how much token of the protocol they have ( still unsolve )

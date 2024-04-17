@@ -9,7 +9,7 @@ contract Box is Ownable {
     event NumberChanged(uint256 newNumber);
 
     constructor(address initialOwner_) Ownable(initialOwner_) {
-
+        
     }
 
     function storeNumber(uint256 newNumber) external returns(uint256) {
